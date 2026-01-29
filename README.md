@@ -7,15 +7,15 @@ Original Figma: [AI 對話介面設計](https://www.figma.com/design/dNyZw77BUfI
 ## 本地開發
 
 1. `npm i` 安裝依賴  
-2. 複製 `.env.example` 為 `.env`，填入 `VITE_GAS_LOG_URL`、`VITE_GEMINI_API_KEY`  
-3. `npm run dev` 啟動開發伺服器  
+2. 複製 `.env.example` 為 `.env`，填入 `VITE_GAS_LOG_URL`、`OPENAI_API_KEY`  
+3. 執行 `vercel dev` 或 `npm run dev` 啟動（檢索需 `/api/chat`，建議用 `vercel dev` 同時跑前端與 API）  
 
 ## 環境變數檢查
 
 - **VITE_GAS_LOG_URL**：請使用 GAS **新部署後**的 Web App 網址，否則實驗資料會送錯端點。  
-- **VITE_GEMINI_API_KEY** 或 **GEMINI_API_KEY**：Gemini API Key。  
-  - 正式環境（Vercel）：檢索經由 `/api/chat` Serverless 呼叫，API Key 請在 Vercel **Settings > Environment Variables** 設定（任選其一即可），**改動後需重新部署**。  
-  - 開發環境：前端直接呼叫 Gemini，需在 `.env` 設定 `VITE_GEMINI_API_KEY`。  
+- **OPENAI_API_KEY**：OpenAI API Key，供 `/api/chat` 材質檢索使用。  
+  - Vercel：在 **Settings > Environment Variables** 新增 `OPENAI_API_KEY`，**改動後需重新部署**。  
+  - 本地：在 `.env` 設定 `OPENAI_API_KEY`，並用 `vercel dev` 跑 API。  
 
 ## 型別說明（實驗數據）
 
@@ -25,6 +25,6 @@ Original Figma: [AI 對話介面設計](https://www.figma.com/design/dNyZw77BUfI
 
 1. 在 Vercel 專案 **Settings > Environment Variables** 新增：  
    - `VITE_GAS_LOG_URL` = 你的 GAS Web App 網址  
-   - `VITE_GEMINI_API_KEY` = 你的 Gemini API Key  
+   - `OPENAI_API_KEY` = 你的 OpenAI API Key  
 2. 重新部署後，受測者可用 **`https://your-app.vercel.app/?userId=p001`** 進入，App 會自動從 URL 讀取 `userId`。
   

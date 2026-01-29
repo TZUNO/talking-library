@@ -73,8 +73,8 @@ Vercel 通常會自動偵測 Vite，你只要確認：
    然後按 **Add** 或 **Add Another**。
 
 2. 再新增一筆：  
-   **Name**：`VITE_GEMINI_API_KEY`  
-   **Value**：你的 Gemini API Key  
+   **Name**：`OPENAI_API_KEY`  
+   **Value**：你的 OpenAI API Key  
 
 3. 左邊 **Environment** 建議三個都勾選：Production、Preview、Development（這樣每個環境都能用到）。
 
@@ -82,7 +82,7 @@ Vercel 通常會自動偵測 Vite，你只要確認：
 
 ```
 VITE_GAS_LOG_URL     = https://script.google.com/macros/s/.../exec
-VITE_GEMINI_API_KEY  = AIza...
+OPENAI_API_KEY       = sk-...
 ```
 
 ---
@@ -126,7 +126,7 @@ App 會自動從網址讀取 `userId`，實驗資料送進 GAS 時就會帶這�
 - 確認該資料夾裡有 `package.json`，且本地執行 `npm run build` 會過。
 
 **Q：上線後打不開／白畫面？**  
-- 檢查 **Environment Variables** 是否有打錯字（必須是 `VITE_GAS_LOG_URL`、`VITE_GEMINI_API_KEY`）。  
+- 檢查 **Environment Variables** 是否有打錯字（必須是 `VITE_GAS_LOG_URL`、`OPENAI_API_KEY`）。  
 - 到專案 **Deployments** 點最新一次部署，看 **Building** 的 log 有沒有錯誤。
 
 **Q：受測者連結要給哪一個？**  
@@ -143,7 +143,7 @@ App 會自動從網址讀取 `userId`，實驗資料送進 GAS 時就會帶這�
 
 - [ ] 本地已跑過 `npm run build` 且成功  
 - [ ] 程式碼已 push 到 GitHub（或 GitLab / Bitbucket）  
-- [ ] Vercel 已新增環境變數：`VITE_GAS_LOG_URL`、`VITE_GEMINI_API_KEY`  
+- [ ] Vercel 已新增環境變數：`VITE_GAS_LOG_URL`、`OPENAI_API_KEY`  
 - [ ] 若專案在 repo 子資料夾，Root Directory 已設為 `AI 對話介面設計`  
 - [ ] 部署完成後用 `?userId=p001` 開一次，確認介面與紀錄正常  
 
