@@ -13,7 +13,9 @@ Original Figma: [AI 對話介面設計](https://www.figma.com/design/dNyZw77BUfI
 ## 環境變數檢查
 
 - **VITE_GAS_LOG_URL**：請使用 GAS **新部署後**的 Web App 網址，否則實驗資料會送錯端點。  
-- **VITE_GEMINI_API_KEY**：Gemini API Key，用於材質檢索對話。  
+- **VITE_GEMINI_API_KEY** 或 **GEMINI_API_KEY**：Gemini API Key。  
+  - 正式環境（Vercel）：檢索經由 `/api/chat` Serverless 呼叫，API Key 請在 Vercel **Settings > Environment Variables** 設定（任選其一即可），**改動後需重新部署**。  
+  - 開發環境：前端直接呼叫 Gemini，需在 `.env` 設定 `VITE_GEMINI_API_KEY`。  
 
 ## 型別說明（實驗數據）
 

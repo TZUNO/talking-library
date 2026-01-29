@@ -28,8 +28,26 @@ function getModel(): GenerativeModel {
 
 /**
  * 發送使用者輸入，取得材質檢索回覆（單輪）
+ * - 正式環境：呼叫 Vercel /api/chat（避免 CORS、API Key 不暴露）
+ * - 開發環境：直接呼叫 Gemini SDK（需 .env 的 VITE_GEMINI_API_KEY）
  */
 export async function chatMaterialQuery(userMessage: string): Promise<string> {
+  if (import.meta.env.PROD) {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: userMessage }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      throw new Error((data?.error as string) || `HTTP ${res.status}`);
+    }
+    if (!data?.text) {
+      throw new Error((data?.error as string) || '未取得回覆');
+    }
+    return data.text as string;
+  }
+
   const m = getModel();
   const result = await m.generateContent({
     contents: [

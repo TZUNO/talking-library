@@ -70,7 +70,8 @@ export default function App() {
       setLastReply(reply);
     } catch (err) {
       console.error(err);
-      setLastReply('檢索時發生錯誤，請稍後再試。');
+      const msg = err instanceof Error ? err.message : '檢索時發生錯誤，請稍後再試。';
+      setLastReply('檢索失敗：' + msg);
     } finally {
       setInputValue('');
       setIsSubmitting(false);
